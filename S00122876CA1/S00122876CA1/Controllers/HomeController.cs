@@ -29,6 +29,16 @@ namespace S00122876CA1.Controllers
             return View();
         }
 
+        //public ActionResult Search(string searchTerm)
+        //{
+        //    var name = from n in db.OrderDetails
+        //               where n.Order.FirstName.Contains(searchTerm)
+        //               select n;
+
+
+        //    return View("Index", name);
+        //}
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
