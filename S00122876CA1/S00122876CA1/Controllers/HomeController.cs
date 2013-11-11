@@ -8,11 +8,18 @@ namespace S00122876CA1.Controllers
 {
     public class HomeController : Controller
     {
+
+        MusicDatabaseDataContext db = new MusicDatabaseDataContext();
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
-            return View();
+            var model = from r in db.OrderDetails
+                        orderby r.AlbumId
+                        select r;
+
+
+            return View(model);
         }
 
         public ActionResult About()
