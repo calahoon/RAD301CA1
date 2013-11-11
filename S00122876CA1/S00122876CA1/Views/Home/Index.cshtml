@@ -19,8 +19,8 @@
 
 <h2>Album Orders:</h2>
 
-<table class="table table-striped table-hover">
-    <tr>
+<table class="table table-striped table-hover table-bordered">
+    <tr class="warning">
         <th>
             @Html.DisplayNameFor(model => model.OrderId)
         </th>
@@ -76,7 +76,7 @@
             </td>
           
            <td>
-                @Html.ActionLink("Albums & Artist", "Index", "Album", new { id = item.OrderId }, null)
+                @Html.ActionLink("Albums & Artist", "Index", "Album", new { id = item.OrderId }, new {@class="btn btn-info"})
             </td>
 
          @*   <td>
