@@ -22,10 +22,11 @@ namespace S00122876CA1.Controllers
             //    .Where(ord => searchTerm == null || ord.Order.FirstName.Contains(searchTerm))
             //    .OrderBy(o => o.Order.FirstName);
 
-            var allOrders = from o in db.OrderDetails
-                           where searchTerm == null || o.Order.FirstName.Contains(searchTerm)
-                           orderby o.Order.FirstName
-                           select o;
+            var allOrders = from od in db.OrderDetails
+                            join o in db.Orders on od.OrderId equals o.OrderId
+                           where searchTerm == null || od.Order.FirstName.Contains(searchTerm) || od.Order.LastName.Contains(searchTerm)
+                           orderby od.Album.Title
+                           select od;
 
             
             return View(allOrders);
@@ -38,15 +39,15 @@ namespace S00122876CA1.Controllers
             return View();
         }
 
-        public ActionResult Search(string searchTerm)
-        {
-            var name = from n in db.OrderDetails
-                       where n.Order.FirstName.Contains(searchTerm)
-                       select n;
+        //public ActionResult Search(string searchTerm)
+        //{
+        //    var name = from n in db.OrderDetails
+        //               where n.Order.FirstName.Contains(searchTerm)
+        //               select n;
 
 
-            return View("Index", name);
-        }
+        //    return View("Index", name);
+        //}
 
         public ActionResult Contact()
         {
