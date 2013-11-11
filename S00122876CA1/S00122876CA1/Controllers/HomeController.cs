@@ -11,15 +11,24 @@ namespace S00122876CA1.Controllers
 
         MusicDatabaseDataContext db = new MusicDatabaseDataContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm)
         {
 
-            var model = from r in db.OrderDetails
-                        orderby r.AlbumId
-                        select r;
+            //var model = from r in db.OrderDetails
+            //            orderby r.AlbumId
+            //            select r;
 
+            //var allOrders = db.OrderDetails
+            //    .Where(ord => searchTerm == null || ord.Order.FirstName.Contains(searchTerm))
+            //    .OrderBy(o => o.Order.FirstName);
 
-            return View(model);
+            var allOrders = from o in db.OrderDetails
+                           where searchTerm == null || o.Order.FirstName.Contains(searchTerm)
+                           orderby o.Order.FirstName
+                           select o;
+
+            
+            return View(allOrders);
         }
 
         public ActionResult About()
@@ -29,15 +38,15 @@ namespace S00122876CA1.Controllers
             return View();
         }
 
-        //public ActionResult Search(string searchTerm)
-        //{
-        //    var name = from n in db.OrderDetails
-        //               where n.Order.FirstName.Contains(searchTerm)
-        //               select n;
+        public ActionResult Search(string searchTerm)
+        {
+            var name = from n in db.OrderDetails
+                       where n.Order.FirstName.Contains(searchTerm)
+                       select n;
 
 
-        //    return View("Index", name);
-        //}
+            return View("Index", name);
+        }
 
         public ActionResult Contact()
         {
