@@ -6,22 +6,30 @@
     @* Could use white-space:nowrap to avoid line wrap*@
     <thead>
         <tr>
-            <th style="width:10%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
+            <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
+            <th style="width:28%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderDate)</th>
             <th style="width:30%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipAddress)</th>
-            <th></th>
-            <th style="width:5%"></th>
+            <th style="width:3%"></th>
+            <th style="width:27%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var ord in Model)
         {
-            <tr onclick="listOrders('@ord.CustomerID');" style="cursor:pointer">
+            <tr onclick="listOrders('@ord.EmployeeID');" style="cursor:pointer">
                 <td>
                    @String.Format("{0:d}",ord.OrderID)
                 </td>
                 <td>
+                   @Html.DisplayFor(modelItem => ord.OrderDate)
+                </td>
+                <td>
                   @* @Html.DisplayFor(modelItem => cust.Country)*@
                    @String.Format("{0:d}, {1:d}, {2:d}", ord.ShipAddress, ord.ShipCity, ord.ShipCountry)
+                </td>
+                <td></td>
+                <td>
+                   @String.Format("{0:d}", ord.Customer.ContactName)
                 </td>
                 <td>
                     @*<label class="label label-info pull-right">@cust.Orders.Count</label>*@

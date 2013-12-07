@@ -5530,14 +5530,14 @@ a.list-group-item:focus {
 
 .panel-info {
   border-color: #bce8f1;
-  width:450px;
+  width:470px;
 }
 
 .panel-infoRight
 {
     border-color: #bce8f1;
-    width: 450px;
-    margin-left:150px;
+    width: 470px;
+    margin-left:170px;
 }
 
 .panel-info > .panel-heading {
