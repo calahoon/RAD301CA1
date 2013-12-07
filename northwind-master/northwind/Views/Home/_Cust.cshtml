@@ -6,17 +6,17 @@
     @* Could use white-space:nowrap to avoid line wrap*@
     <thead>
         <tr>
-            <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
-            <th style="width:28%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderDate)</th>
-            <th style="width:30%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipAddress)</th>
+            <th style="width:16%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
+            <th style="width:21%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderDate)</th>
+            <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipAddress)</th>
             <th style="width:3%"></th>
-            <th style="width:27%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
+            <th style="width:24%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var ord in Model)
         {
-            <tr onclick="listOrders('@ord.EmployeeID');" style="cursor:pointer">
+            <tr style="cursor:pointer">
                 <td>
                    @String.Format("{0:d}",ord.OrderID)
                 </td>
@@ -32,7 +32,7 @@
                    @String.Format("{0:d}", ord.Customer.ContactName)
                 </td>
                 <td>
-                    @*<label class="label label-info pull-right">@cust.Orders.Count</label>*@
+                    @Html.ActionLink("Orders", "Index", "Home",null, new {@class="btn btn-info"})
                 </td>
             </tr>
         }

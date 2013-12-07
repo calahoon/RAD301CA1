@@ -46,14 +46,20 @@ namespace northwind.Controllers
             ////return View(customers.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult CustOrders(string id, int? page)
+        public ActionResult CustOrders(int? id, int? page)
         {
             int pageNumber = (page ?? 1);
             int pageSize = 10;
             // Need to pass the customerId to provide this to ajax call later
             ViewBag.custId = id;
+
+            var orders = from e in northwind.Employees
+                         where id == e.EmployeeID
+                         select e;
             // ToList() call needed as sproc returns IEnumerable<> rather than IQueryable<>
-            return PartialView("_CustOrders", northwind.CustOrdersOrders(id).ToList().ToPagedList(pageNumber, pageSize));
+            //return PartialView("_CustOrders", northwind.CustOrdersOrders(id).ToList().ToPagedList(pageNumber, pageSize));
+            return PartialView("CustOrders", orders.ToPagedList(pageNumber, pageSize));
+            //return View(orders.ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()

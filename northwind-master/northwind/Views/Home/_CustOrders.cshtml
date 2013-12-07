@@ -5,7 +5,7 @@
     <table id="tblCustsOrders" class="table table-striped table-condensed table-hover">
         <thead>
             <tr>
-                <th style="width:70%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderDate)</th>
+                <th style="width:70%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipCity)</th>
                 <th style="width:40%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
             </tr>
         </thead>
@@ -14,8 +14,8 @@
         {
         <tr>
             <td>
-                @String.Format("{0:d}",cust.OrderDate)
-            </td>
+                @String.Format("{0:d}",cust.ShipCity)
+            </td> 
             <td>
                 @Html.DisplayFor(modelItem => cust.OrderID)
             </td>

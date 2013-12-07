@@ -1,29 +1,7 @@
 ﻿@model PagedList.IPagedList<Order>
 @using PagedList.Mvc
 
-@section scripts
-{
-    <script>
-        /* Handles listing of Orders when clicking on Customer */
-        function listOrders(custId) {
-            $.ajax({
-                url: '@Url.Action("CustOrders")',
-                data: { id: custId },
-                success: function (data) {
-                    $('#tblCustOrders').html(data);
-                    shrinkPageControls();
-                }
-            });
-            $(this).toggleClass('success');
-        }
-        /* Onload set smaller pagination styling */
-        function shrinkPageControls() {
-            $('ul.pagination').addClass('pagination-sm');
-        };
 
-        $(shrinkPageControls());
-    </script>
-}
 
 <div class="page-header">
     <h1>Northwind Customers <small>select customer</small></h1>

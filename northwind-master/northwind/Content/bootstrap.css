@@ -1999,7 +1999,7 @@ textarea.input-lg {
 
 .btn {
   display: inline-block;
-  padding: 6px 12px;
+  padding: 6px 8px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: normal;
@@ -2257,6 +2257,7 @@ fieldset[disabled] .btn-success.active {
   color: #ffffff;
   background-color: #5bc0de;
   border-color: #46b8da;
+  width: 60px;
 }
 
 .btn-info:hover,
@@ -5530,14 +5531,14 @@ a.list-group-item:focus {
 
 .panel-info {
   border-color: #bce8f1;
-  width:470px;
+  width:540px;
 }
 
 .panel-infoRight
 {
     border-color: #bce8f1;
-    width: 470px;
-    margin-left:170px;
+    width: 460px;
+    margin-left:230px;
 }
 
 .panel-info > .panel-heading {
