@@ -1,0 +1,51 @@
+﻿@model PagedList.IPagedList<Order>
+@using PagedList.Mvc
+
+@section scripts
+{
+    <script>
+        /* Handles listing of Orders when clicking on Customer */
+        function listOrders(custId) {
+            $.ajax({
+                url: '@Url.Action("CustOrders")',
+                data: { id: custId },
+                success: function (data) {
+                    $('#tblCustOrders').html(data);
+                    shrinkPageControls();
+                }
+            });
+            $(this).toggleClass('success');
+        }
+        /* Onload set smaller pagination styling */
+        function shrinkPageControls() {
+            $('ul.pagination').addClass('pagination-sm');
+        };
+
+        $(shrinkPageControls());
+    </script>
+}
+
+<div class="page-header">
+    <h1>Northwind Customers <small>select customer</small></h1>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="panel panel-info">
+            <div class="panel-heading">Choose a Customer</div>
+            <div class="panel-body" id="tblCusts">
+                @* invoke _Cust partial view with model;
+                    only used on first render, thereafter with ajax call on paginator
+                *@
+                @{ Html.RenderPartial("_Cust", Model); }
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-info panel-infoRight">
+            <div class="panel-heading">Choose an Order</div>
+            <div class="panel-body" id="tblCustOrders">
+            </div>
+        </div>
+    </div>
+</div>
