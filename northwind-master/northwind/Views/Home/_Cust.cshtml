@@ -6,12 +6,11 @@
     @* Could use white-space:nowrap to avoid line wrap*@
     <thead>
         <tr>
-            <th style="width:16%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
-            <th style="width:21%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderDate)</th>
-            <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipAddress)</th>
-            <th style="width:3%"></th>
-            <th style="width:24%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
-            
+            <th style="width:11%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderID)</th>
+            <th style="width:17%">@Html.DisplayNameFor(o => o.FirstOrDefault().OrderDate)</th>
+            <th style="width:18%">@Html.DisplayNameFor(o => o.FirstOrDefault().ShipAddress)</th>
+            <th style="width:18%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
+            <th style="width:15%">@Html.DisplayNameFor(o => o.FirstOrDefault().ShipName)</th>
         </tr>
     </thead>
     <tbody>
@@ -28,14 +27,25 @@
                   @* @Html.DisplayFor(modelItem => cust.Country)*@
                    @String.Format("{0:d}, {1:d}, {2:d}", ord.ShipAddress, ord.ShipCity, ord.ShipCountry)
                 </td>
-                <td></td>
                 <td>
-                   @String.Format("{0:d}", ord.Customer.ContactName)
+                   @String.Format("{0:d}, {1:d}", ord.Customer.ContactName, ord.Customer.ContactTitle)
                 </td>
                 <td>
                    @Html.DropDownListFor(modelItem => ord.Employee.EmployeeID, new SelectList(ViewBag.Employees, "EmployeeID"), "Employee")
+                   @Html.DropDownListFor(modelItem => ord.ShipVia, new SelectList(ViewBag.Shippers, "EmployeeID"), "ShipperName")
                     @*@Html.ActionLink("Orders", "CustOrders", "Home",new {id = ord.Employee.EmployeeID}, new {@class="btn btn-info"})*@
                    @* @Ajax.ActionLink("Orders", "CustOrders", new {id = ord.Employee.EmployeeID}, new AjaxOptions{ UpdateTargetId="tblCustOrders", InsertionMode = InsertionMode.Replace, HttpMethod="GET"})*@
+                </td>
+                <td></td>
+                <td>
+                     @*@Html.ActionLink("Delete", "CustOrders", "Home", new { id = ord.OrderID }, new {@class="btn btn-info"})*@
+                    @using (Html.BeginForm("DeleteConfirmed", "Home", new {id = ord.OrderID}))
+                    {
+                        <input type="submit" value="Delete" 
+                           onclick="return confirm('Are you sure you want to delete record with ID = @ord.OrderID');" />
+                        
+                    }
+
                 </td>
             </tr>
         }

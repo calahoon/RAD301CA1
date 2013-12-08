@@ -30,6 +30,12 @@ namespace northwind.Controllers
                       orderby e.EmployeeID
                       select e.FirstName;
 
+            var shippers = from s in northwind.Shippers
+                           orderby s.CompanyName
+                           select s.CompanyName;
+
+
+            ViewBag.Shippers = shippers.ToList();
             ViewBag.Employees = emp.ToList();
 
             if (Request.IsAjaxRequest())
@@ -76,6 +82,36 @@ namespace northwind.Controllers
             //}
 
             return PartialView("_CustOrders", orders.ToList().ToPagedList(pageNumber, pageSize));
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            Order order = northwind.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(order);
+
+        }
+
+
+        //worked the first time but now it doesnt seem to work
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            //return RedirectToAction("Index", "Home");
+            Order order = northwind.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            northwind.Orders.Remove(order);
+            northwind.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()
