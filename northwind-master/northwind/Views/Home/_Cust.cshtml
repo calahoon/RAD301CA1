@@ -11,12 +11,13 @@
             <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipAddress)</th>
             <th style="width:3%"></th>
             <th style="width:24%">@Html.DisplayNameFor(o => o.FirstOrDefault().Customer.ContactName)</th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach (var ord in Model)
         {
-            <tr style="cursor:pointer">
+            <tr onclick="listOrders('@ord.Employee.EmployeeID');" style="cursor:pointer">
                 <td>
                    @String.Format("{0:d}",ord.OrderID)
                 </td>
@@ -32,7 +33,9 @@
                    @String.Format("{0:d}", ord.Customer.ContactName)
                 </td>
                 <td>
-                    @Html.ActionLink("Orders", "Index", "Home",null, new {@class="btn btn-info"})
+                   @Html.DropDownListFor(modelItem => ord.Employee.EmployeeID, new SelectList(ViewBag.Employees, "EmployeeID"), "Employee")
+                    @*@Html.ActionLink("Orders", "CustOrders", "Home",new {id = ord.Employee.EmployeeID}, new {@class="btn btn-info"})*@
+                   @* @Ajax.ActionLink("Orders", "CustOrders", new {id = ord.Employee.EmployeeID}, new AjaxOptions{ UpdateTargetId="tblCustOrders", InsertionMode = InsertionMode.Replace, HttpMethod="GET"})*@
                 </td>
             </tr>
         }

@@ -26,7 +26,11 @@ namespace northwind.Controllers
                             orderby o.OrderID
                             select o;
 
-           
+            var emp = from e in northwind.Employees
+                      orderby e.EmployeeID
+                      select e.FirstName;
+
+            ViewBag.Employees = emp.ToList();
 
             if (Request.IsAjaxRequest())
             {
@@ -53,13 +57,25 @@ namespace northwind.Controllers
             // Need to pass the customerId to provide this to ajax call later
             ViewBag.custId = id;
 
+            //var orders = from e in northwind.Employees
+            //             where id == e.EmployeeID
+            //             orderby e.EmployeeID
+            //             select e;
+
             var orders = from e in northwind.Employees
-                         where id == e.EmployeeID
+                         where e.EmployeeID == id
+                         orderby e.FirstName
                          select e;
+
+
             // ToList() call needed as sproc returns IEnumerable<> rather than IQueryable<>
             //return PartialView("_CustOrders", northwind.CustOrdersOrders(id).ToList().ToPagedList(pageNumber, pageSize));
-            return PartialView("CustOrders", orders.ToPagedList(pageNumber, pageSize));
-            //return View(orders.ToPagedList(pageNumber, pageSize));
+            //if (Request.IsAjaxRequest())
+            //{
+            //    return PartialView("_CustOrders", orders);
+            //}
+
+            return PartialView("_CustOrders", orders.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult About()
@@ -73,5 +89,12 @@ namespace northwind.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+
+
+        public IEnumerable<string> GetAllEmployees()
+        {
+            return northwind.Employees.Select(e => e.FirstName);
+            //return db.Suppliers.Select(e => e.SupplierID);
+        } 
     }
 }

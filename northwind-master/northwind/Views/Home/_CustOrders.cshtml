@@ -1,23 +1,35 @@
-﻿@model PagedList.IPagedList<CustOrdersOrders_Result>
+﻿@model PagedList.IPagedList<Employee>
 @using PagedList.Mvc
 
 <div id="tblCustOrders">
-    <table id="tblCustsOrders" class="table table-striped table-condensed table-hover">
+    <table id="tblCustsOrders" class="table table-striped">
         <thead>
             <tr>
-                <th style="width:70%">@Html.DisplayNameFor(c => c.FirstOrDefault().ShipCity)</th>
-                <th style="width:40%">@Html.DisplayNameFor(c => c.FirstOrDefault().OrderID)</th>
+                <th style="width:5%">@Html.DisplayNameFor(c => c.FirstOrDefault().EmployeeID)</th>
+                <th style="width:25%">@Html.DisplayNameFor(c => c.FirstOrDefault().FirstName)</th>
+                <th style="width:30%">@Html.DisplayNameFor(c => c.FirstOrDefault().Title)</th>
+                <th style="width:30%">@Html.DisplayNameFor(c => c.FirstOrDefault().ReportsTo)</th>
+                <th style="width:20%">@Html.DisplayNameFor(c => c.FirstOrDefault().Country)</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var cust in Model)
+            @foreach (var ord in Model)
         {
         <tr>
             <td>
-                @String.Format("{0:d}",cust.ShipCity)
+                @Html.DisplayFor(modelItem => ord.EmployeeID)
+            </td>
+            <td>
+               @String.Format("{0:d} {1:d}", ord.FirstName, ord.LastName)
             </td> 
             <td>
-                @Html.DisplayFor(modelItem => cust.OrderID)
+                @Html.DisplayFor(modelItem => ord.Title)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => ord.ReportsTo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => ord.Country)
             </td>
         </tr>
         }
