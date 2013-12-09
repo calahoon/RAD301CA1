@@ -31,6 +31,9 @@
             <td>
                 @Html.DisplayFor(modelItem => ord.Country)
             </td>
+              <td>
+                @Html.ActionLink("Orders", "EmployeeOrders", "Home",new {id = ord.Employee.EmployeeID}, new {@class="btn btn-info"})
+             </td>
         </tr>
         }
         </tbody>

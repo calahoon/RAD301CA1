@@ -114,6 +114,20 @@ namespace northwind.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult EmployeeOrders(int id, int? page)
+        {
+            int pageNumber = (page ?? 1);
+            int pageSize = 10;
+
+            var orders = from o in northwind.Orders
+                         where o.EmployeeID == id
+                         orderby o.OrderID
+                         select o;
+
+            return View(orders.ToPagedList(pageNumber, pageSize));
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
