@@ -315,7 +315,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #93d4fc;
 }
 
 input,
@@ -1481,12 +1481,12 @@ th {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+  background-color: #F0E68C;
 }
 
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
-  background-color: #f5f5f5;
+  background-color: #FFFACD;
 }
 
 table col[class*="col-"] {
@@ -4029,6 +4029,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+
 }
 
 .navbar:before,
@@ -4935,7 +4936,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #99B35B;
 }
 
 .jumbotron h1 {
@@ -5328,7 +5329,7 @@ a.list-group-item:focus {
 
 .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #F9F3A1;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5530,20 +5531,20 @@ a.list-group-item:focus {
 }
 
 .panel-info {
-  border-color: #bce8f1;
+  border-color: #EAA019;
   width:670px;
 }
 
 .panel-infoRight
 {
-    border-color: #bce8f1;
+    border-color: #EAA019;
     width: 470px;
     margin-left:360px;
 }
 
 .panel-info > .panel-heading {
-  color: #3a87ad;
-  background-color: #d9edf7;
+  color: #323232;
+  background-color: #99b35b;
   border-color: #bce8f1;
 }
 
